@@ -3,1028 +3,986 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#081321">
-<title>Aetheris Network | Mining Dashboard</title>
+
+<title>AETHERIS NETWORK | Mining Dashboard</title>
 
 <style>
 :root {
---bg:#07111f;
---panel:#101f32;
---line:#263c55;
---text:#eef6ff;
---muted:#91a8c2;
---cyan:#55d8ed;
---blue:#638cff;
---green:#54dfaa;
+  --bg:#07111f;
+  --panel:#101f32;
+  --line:#263c55;
+  --text:#eef6ff;
+  --muted:#91a8c2;
+  --cyan:#55d8ed;
+  --blue:#638cff;
+  --green:#54dfaa;
 }
 
 * {
-box-sizing:border-box;
+  box-sizing:border-box;
 }
 
 body {
-margin:0;
-background:radial-gradient(900px 500px at 80% -10%,#18365a 0%,transparent 60%),var(--bg);
-color:var(--text);
-font-family:Arial,sans-serif;
-min-height:100vh;
+  margin:0;
+  background:linear-gradient(140deg,#06101d,#0b1930);
+  color:var(--text);
+  font-family:Arial,sans-serif;
 }
 
 .wrap {
-max-width:1120px;
-margin:auto;
-padding:25px 20px 50px;
+  max-width:1050px;
+  margin:auto;
+  padding:20px;
 }
 
-.top {
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-margin-bottom:30px;
-}
-
-.brand {
-display:flex;
-align-items:center;
-gap:12px;
-font-weight:850;
-letter-spacing:1.5px;
+header {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-bottom:28px;
 }
 
 .logo {
-width:43px;
-height:43px;
-border-radius:14px;
-background:linear-gradient(135deg,var(--cyan),var(--blue));
-display:grid;
-place-items:center;
-color:#061321;
-font-size:23px;
+  width:50px;
+  height:50px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#55d8ed,#638cff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  font-weight:bold;
+  color:#07111f;
+  box-shadow:0 0 20px #55d8ed55;
 }
 
-.pill {
-border:1px solid #245746;
-color:var(--green);
-background:#102b2a;
-padding:8px 12px;
-border-radius:99px;
-font-size:12px;
+.brand h2 {
+  margin:0;
+  letter-spacing:2px;
+  font-size:20px;
 }
 
-h1 {
-font-size:clamp(27px,5vw,39px);
-margin:0 0 7px;
+.brand small {
+  color:var(--cyan);
+  letter-spacing:2px;
 }
 
-.sub {
-color:var(--muted);
-margin:0 0 24px;
+.hero {
+  background:linear-gradient(135deg,#102640,#132c49);
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  margin-bottom:20px;
 }
 
-.grid {
-display:grid;
-grid-template-columns:1.35fr 1fr;
-gap:18px;
+.hero h1 {
+  margin-top:0;
 }
 
-.card {
-background:linear-gradient(145deg,#142840,#0d1b2c);
-border:1px solid var(--line);
-border-radius:20px;
-padding:22px;
-box-shadow:0 14px 40px #0002;
-}
-
-.balance {
-background:linear-gradient(120deg,#123b54,#1b315c);
-}
-
-.label {
-font-size:12px;
-color:#b1c6dc;
-letter-spacing:.7px;
-}
-
-.amount {
-font-size:clamp(34px,7vw,50px);
-font-weight:850;
-margin:12px 0;
-}
-
-.muted {
-color:var(--muted);
-font-size:13px;
-}
-
-.row {
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
-}
-
-.btn {
-border:0;
-border-radius:12px;
-padding:12px 16px;
-font-weight:750;
-cursor:pointer;
-background:linear-gradient(100deg,var(--cyan),#8aabff);
-color:#061321;
-}
-
-.btn.secondary {
-background:#1d3855;
-color:white;
-border:1px solid #36536f;
-}
-
-.btn:disabled {
-opacity:.5;
-cursor:not-allowed;
-}
-
-.wide {
-width:100%;
-}
-
-.progress {
-height:8px;
-background:#263d56;
-border-radius:99px;
-overflow:hidden;
-margin:14px 0;
-}
-
-.progress span {
-display:block;
-width:0;
-height:100%;
-background:linear-gradient(90deg,var(--cyan),var(--blue));
-}
-
-.stats {
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:16px;
-}
-
-.stats div {
-padding:13px;
-background:#0b1a2b;
-border:1px solid var(--line);
-border-radius:13px;
-}
-
-.stats strong {
-display:block;
-font-size:19px;
-margin-top:5px;
+.hero p {
+  color:var(--muted);
+  line-height:1.6;
 }
 
 .nav {
-display:flex;
-gap:7px;
-background:#101f32;
-border:1px solid var(--line);
-padding:7px;
-border-radius:14px;
-margin:24px 0;
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin:20px 0;
 }
 
 .nav button {
-flex:1;
-padding:11px 8px;
-border:0;
-border-radius:9px;
-background:transparent;
-color:#c7d7e8;
-font-weight:700;
-cursor:pointer;
+  flex:1;
+  min-width:75px;
+  padding:13px 10px;
+  border:1px solid var(--line);
+  background:#101f32;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-.nav button.act {
-background:linear-gradient(100deg,var(--cyan),#8aabff);
-color:#061321;
+.nav button.active {
+  background:linear-gradient(135deg,#55d8ed,#638cff);
+  color:#07111f;
+  font-weight:bold;
 }
 
-.tab-box {
-display:none;
+.section {
+  display:none;
 }
 
-.tab-box.active {
-display:block;
-}
-
-.section-title {
-font-size:18px;
-margin:0 0 16px;
-}
-
-.tasks {
-display:grid;
-gap:10px;
-}
-
-.task {
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-padding:13px;
-background:#0b1a2b;
-border:1px solid var(--line);
-border-radius:13px;
-}
-
-.task small {
-display:block;
-color:var(--muted);
-margin-top:4px;
-}
-
-.refbox {
-display:flex;
-gap:8px;
-margin:14px 0;
-}
-
-.refbox input {
-min-width:0;
-flex:1;
-background:#091726;
-color:white;
-border:1px solid var(--line);
-border-radius:11px;
-padding:12px;
-}
-
-.share-buttons {
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:12px;
-}
-
-.telegram {
-background:#229ED9;
-color:white;
-}
-
-.note {
-font-size:12px;
-color:var(--muted);
-line-height:1.6;
-margin-top:15px;
-}
-
-.notice {
-padding:11px 13px;
-border-radius:11px;
-background:#332b17;
-border:1px solid #665329;
-color:#f5d990;
-font-size:12px;
-line-height:1.5;
-margin-top:14px;
-}
-
-.wallet {
-margin-top:18px;
-}
-
-.footer {
-text-align:center;
-color:#6f87a1;
-font-size:12px;
-margin-top:28px;
-}
-
-@media(max-width:760px) {
-.grid {
-grid-template-columns:1fr;
-}
-
-.wrap {
-padding:18px 13px;
+.section.active {
+  display:block;
 }
 
 .card {
-padding:18px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:22px;
+  border-radius:17px;
+  margin-bottom:16px;
 }
 
-.nav button {
-font-size:12px;
-padding:10px 3px;
+.card h3 {
+  margin-top:0;
 }
 
-.share-buttons {
-grid-template-columns:1fr;
+.muted {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
 }
+
+.balance {
+  font-size:36px;
+  color:var(--cyan);
+  font-weight:bold;
+  margin:15px 0;
+  overflow-wrap:anywhere;
+}
+
+button.action {
+  border:0;
+  padding:13px 19px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#55d8ed,#638cff);
+  color:#07111f;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button.action:disabled {
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+button.secondary {
+  background:#203750;
+  color:white;
+  border:1px solid var(--line);
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.stat {
+  background:#0a192b;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid var(--line);
+}
+
+.stat strong {
+  display:block;
+  color:var(--cyan);
+  margin-top:8px;
+}
+
+.progress {
+  height:9px;
+  background:#263c55;
+  border-radius:20px;
+  overflow:hidden;
+  margin:15px 0;
+}
+
+.progress div {
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#55d8ed,#638cff);
+}
+
+.task {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:15px;
+  background:#0a192b;
+  border:1px solid var(--line);
+  border-radius:12px;
+  margin:12px 0;
+}
+
+.task p {
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:0;
+}
+
+.task button {
+  flex-shrink:0;
+}
+
+input {
+  width:100%;
+  padding:13px;
+  background:#071525;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:9px;
+  margin:10px 0;
+}
+
+.ad-box {
+  display:none;
+  background:#071525;
+  border:1px solid var(--cyan);
+  padding:18px;
+  border-radius:14px;
+  margin-top:15px;
+  text-align:center;
+}
+
+.ad-box iframe {
+  max-width:100%;
+  background:white;
+  border:0;
+}
+
+.ad-label {
+  color:var(--cyan);
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:12px;
+}
+
+footer {
+  text-align:center;
+  color:var(--muted);
+  padding:30px 10px;
+  font-size:13px;
+}
+
+@media(max-width:650px) {
+  .stats {
+    grid-template-columns:1fr;
+  }
+
+  .task {
+    align-items:flex-start;
+  }
+
+  .task button {
+    padding:10px;
+  }
+
+  .wrap {
+    padding:13px;
+  }
+
+  .balance {
+    font-size:29px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<main class="wrap">
+<div class="wrap">
 
-<header class="top">
-<div class="brand">
-<div class="logo">A</div>
-<span>AETHERIS <span style="color:var(--cyan)">NETWORK</span></span>
-</div>
-<span class="pill">● MINING DASHBOARD</span>
+<header>
+  <div class="logo">A</div>
+  <div class="brand">
+    <h2>AETHERIS NETWORK</h2>
+    <small>MINING DASHBOARD</small>
+  </div>
 </header>
 
-<h1>Welcome to Aetheris</h1>
-<p class="sub">Your mining activity, rewards and community referrals in one place.</p>
+<div class="hero">
+  <h1>Welcome to Aetheris 🚀</h1>
+  <p>
+    Explore the Aetheris Network demo dashboard.
+    Manage your mining sessions, tasks, referrals
+    and wallet information in one place.
+  </p>
+</div>
 
 <nav class="nav">
-<button class="act" onclick="showTab('mine',this)">⛏ Mine</button>
-<button onclick="showTab('tasks',this)">▤ Tasks</button>
-<button onclick="showTab('refer',this)">♧ Refer</button>
-<button onclick="showTab('wallet',this)">◈ Wallet</button>
+  <button class="active" onclick="showTab('mine',this)">Mine</button>
+  <button onclick="showTab('tasks',this)">Tasks</button>
+  <button onclick="showTab('refer',this)">Refer</button>
+  <button onclick="showTab('wallet',this)">Wallet</button>
 </nav>
 
 <!-- MINING SECTION -->
 
-<section id="mine" class="tab-box active">
+<section id="mine" class="section active">
 
-<div class="grid">
+<div class="card">
+  <h3>Total AETH Balance</h3>
 
-<div>
+  <div class="balance">
+    <span id="balance">0</span> AETH
+  </div>
 
-<article class="card balance">
+  <p class="muted">
+    Demo balance stored in your browser.
+  </p>
 
-<div class="row">
-<span class="label">TOTAL AETH BALANCE</span>
-<span class="pill">● Saved balance</span>
+  <button class="action" id="mineBtn" onclick="startMine()">
+    Start Mining
+  </button>
+
+  <h3 style="margin-top:25px">Mining Timer</h3>
+
+  <div class="balance" id="timer">24:00:00</div>
+
+  <div class="progress">
+    <div id="progressBar"></div>
+  </div>
+
+  <p class="muted" id="mineStatus">
+    Start your demo mining session.
+  </p>
 </div>
-
-<div class="amount">
-<span id="balance">0.00</span>
-<span style="font-size:18px">$AETH</span>
-</div>
-
-<div class="muted">
-Your balance is saved in this browser.
-</div>
-
-<div class="progress">
-<span id="progress"></span>
-</div>
-
-<div class="row">
-<span class="muted" id="sessionLabel">Mining session</span>
-<strong id="mineStatus">Ready to start</strong>
-</div>
-
-<div class="row" style="margin-top:8px">
-<span class="muted">Time remaining</span>
-<strong id="timer">24h 00m 00s</strong>
-</div>
-
-<button class="btn wide" id="mineBtn"
-style="margin-top:18px"
-onclick="startMine()">
-⛏ START 24H MINING
-</button>
-
-<p class="note">
-Demo mining rate: 100 AETH per hour.
-This is a demo balance, not real cryptocurrency.
-</p>
-
-</article>
 
 <div class="stats">
 
-<div>
-<span class="muted">Mining rate</span>
-<strong>100/hr</strong>
-</div>
+  <div class="stat">
+    Mining Rate
+    <strong>100 AETH / Hour</strong>
+  </div>
 
-<div>
-<span class="muted">Session length</span>
-<strong>24 hrs</strong>
-</div>
+  <div class="stat">
+    Session Length
+    <strong>24 Hours</strong>
+  </div>
 
-<div>
-<span class="muted">Session reward</span>
-<strong>2,400</strong>
-</div>
-
-</div>
+  <div class="stat">
+    Session Reward
+    <strong>2400 AETH</strong>
+  </div>
 
 </div>
 
-<div>
+<div class="card">
+  <h3>Mining Overview</h3>
 
-<article class="card">
+  <p class="muted">
+    Current Earned:
+    <strong id="earned">0 AETH</strong>
+  </p>
 
-<h2 class="section-title">📈 Mining Overview</h2>
+  <p class="muted">
+    Completed Sessions:
+    <strong id="sessions">0</strong>
+  </p>
 
-<div class="row">
-<span class="muted">Current session earned</span>
-<strong id="sessionEarned">0.00 AETH</strong>
+  <p class="muted">
+    Last Session:
+    <strong id="lastSession">Not started</strong>
+  </p>
+
+  <button class="action secondary"
+  onclick="addDemoReward(500)">
+    Add Demo Reward (+500)
+  </button>
+
+  <p class="muted">
+    Test feature only. This does not represent real cryptocurrency.
+  </p>
 </div>
 
-<div class="row" style="margin-top:15px">
-<span class="muted">Completed sessions</span>
-<strong id="sessionsDone">0</strong>
-</div>
-
-<div class="row" style="margin-top:15px">
-<span class="muted">Last session</span>
-<strong id="lastSession">—</strong>
-</div>
-
-<div class="notice">
-When 24 hours finish, your earned coins stay in your total balance.
-</div>
-
-</article>
-
-<article class="card wallet">
-
-<h2 class="section-title">⚡ Quick Actions</h2>
-
-<button class="btn secondary wide"
-onclick="addDemoReward(500)">
-Add Demo Reward (+500)
-</button>
-
-<p class="note">
-This is only a testing button.
-</p>
-
-</article>
-
-</div>
-</div>
 </section>
 
-<!-- TASK SECTION -->
+<!-- TASKS SECTION -->
 
-<section id="tasks" class="tab-box">
+<section id="tasks" class="section">
 
-<article class="card">
+<div class="card">
+  <h2>Community Tasks</h2>
 
-<h2 class="section-title">🎯 Community Tasks</h2>
+  <p class="muted">
+    Explore community links and sponsored content.
+  </p>
 
-<p class="muted">
-Complete demo tasks to test the dashboard.
-</p>
+  <div class="task">
+    <div>
+      <strong>YouTube Community</strong>
+      <p>Visit our community page.</p>
+    </div>
 
-<div class="tasks">
+    <button class="action"
+    onclick="completeTask(this,'https://youtube.com')">
+      Visit
+    </button>
+  </div>
 
-<div class="task">
-<div>
-▶ YouTube
-<small>Demo reward · 2,500 AETH</small>
-</div>
+  <div class="task">
+    <div>
+      <strong>Instagram Community</strong>
+      <p>Explore social updates.</p>
+    </div>
 
-<button class="btn secondary taskBtn"
-data-id="youtube"
-data-reward="2500"
-onclick="completeTask(this,'https://youtube.com')">
-Visit
-</button>
-</div>
+    <button class="action"
+    onclick="completeTask(this,'https://instagram.com')">
+      Visit
+    </button>
+  </div>
 
-<div class="task">
-<div>
-◎ Instagram
-<small>Demo reward · 1,500 AETH</small>
-</div>
+  <div class="task">
+    <div>
+      <strong>Social Updates</strong>
+      <p>Discover the latest updates.</p>
+    </div>
 
-<button class="btn secondary taskBtn"
-data-id="instagram"
-data-reward="1500"
-onclick="completeTask(this,'https://instagram.com')">
-Visit
-</button>
-</div>
-
-<div class="task">
-<div>
-𝕏 Social Updates
-<small>Demo reward · 1,500 AETH</small>
-</div>
-
-<button class="btn secondary taskBtn"
-data-id="x"
-data-reward="1500"
-onclick="completeTask(this,'https://x.com')">
-Visit
-</button>
-</div>
+    <button class="action"
+    onclick="completeTask(this,'https://telegram.org')">
+      Visit
+    </button>
+  </div>
 
 </div>
 
-<p class="note">
-These are demo rewards. A real website needs server-side verification.
-</p>
+<!-- ADVERTISEMENT -->
 
-</article>
+<div class="card">
+  <h2>Sponsored Advertisement</h2>
+
+  <p class="muted">
+    Support our platform by viewing sponsored content.
+  </p>
+
+  <div class="task">
+    <div>
+      <strong>📢 View Sponsored Ad</strong>
+      <p>Open the advertisement below.</p>
+    </div>
+
+    <button class="action" onclick="showAd()">
+      View Ad
+    </button>
+  </div>
+
+  <div class="ad-box" id="adBox">
+
+    <div class="ad-label">
+      SPONSORED ADVERTISEMENT
+    </div>
+
+    <p class="muted">
+      Advertisement provided by our advertising partner.
+    </p>
+
+    <iframe
+      id="adFrame"
+      title="Sponsored Advertisement"
+      width="160"
+      height="300"
+      scrolling="no">
+    </iframe>
+
+    <p class="muted">
+      Advertisement is independent of AETH demo rewards.
+    </p>
+
+  </div>
+</div>
+
 </section>
 
 <!-- REFERRAL SECTION -->
 
-<section id="refer" class="tab-box">
+<section id="refer" class="section">
 
-<article class="card">
+<div class="card">
 
-<h2 class="section-title">👥 Invite Friends</h2>
+  <h2>Referral Program</h2>
 
-<p class="muted">
-Share your personal referral link with friends on Telegram.
-</p>
+  <p class="muted">
+    Invite your friends to explore Aetheris Network.
+  </p>
 
-<div class="label">YOUR REFERRAL LINK</div>
+  <h3>Your Referral Link</h3>
 
-<div class="refbox">
+  <input id="refLink" readonly>
 
-<input id="refLink" readonly>
+  <button class="action" onclick="copyReferral()">
+    Copy Link
+  </button>
 
-<button class="btn" id="copyBtn"
-onclick="copyReferral()">
-Copy
-</button>
+  <button class="action secondary"
+  onclick="shareTelegram()">
+    Share on Telegram
+  </button>
 
-</div>
-
-<div class="share-buttons">
-
-<button class="btn telegram"
-onclick="shareTelegram()">
-✈ SHARE ON TELEGRAM
-</button>
-
-<button class="btn secondary"
-onclick="shareOther()">
-📤 SHARE
-</button>
+  <button class="action secondary"
+  onclick="shareOther()">
+    Share Other
+  </button>
 
 </div>
 
-<div class="stats">
+<div class="card">
 
-<div>
-<span class="muted">Referral ID</span>
-<strong id="refId" style="font-size:13px">—</strong>
+  <h3>Referral Statistics</h3>
+
+  <div class="stats">
+
+    <div class="stat">
+      Referral ID
+      <strong id="refId">---</strong>
+    </div>
+
+    <div class="stat">
+      Total Referrals
+      <strong id="refCount">0</strong>
+    </div>
+
+    <div class="stat">
+      Demo Reward
+      <strong>5000 AETH</strong>
+    </div>
+
+  </div>
+
+  <p class="muted">
+    Referral tracking and rewards require a secure backend
+    and database. Current statistics are stored locally.
+  </p>
+
 </div>
 
-<div>
-<span class="muted">Referrals on this device</span>
-<strong id="refCount">0</strong>
-</div>
-
-<div>
-<span class="muted">Reward per referral</span>
-<strong>5,000</strong>
-</div>
-
-</div>
-
-<div class="notice">
-Your referral ID is included in the shared link. Actual referral counting and rewards require a shared database and server verification.
-</div>
-
-</article>
 </section>
 
 <!-- WALLET SECTION -->
 
-<section id="wallet" class="tab-box">
+<section id="wallet" class="section">
 
-<article class="card">
+<div class="card">
 
-<h2 class="section-title">👛 Wallet Connection</h2>
+  <h2>Wallet</h2>
 
-<div class="row">
-<span class="muted">TON Wallet Status</span>
-<span class="pill">Not Connected</span>
+  <h3>TON Wallet</h3>
+
+  <p style="color:#ffca70">
+    ● Not Connected
+  </p>
+
+  <p class="muted">
+    Wallet integration is currently under development.
+  </p>
+
+  <button class="action" disabled>
+    Connect Wallet - Coming Soon
+  </button>
+
 </div>
 
-<p class="note">
-Wallet connection is not implemented yet.
-Never share your seed phrase or private key.
-</p>
+<div class="card">
 
-<button class="btn secondary wide" disabled>
-Wallet Integration Pending
-</button>
+  <h3>Network Information</h3>
 
-</article>
+  <p class="muted">
+    Network: Aetheris Demo Network
+  </p>
 
-<article class="card wallet">
+  <p class="muted">
+    Token: AETH
+  </p>
 
-<h2 class="section-title">Network Information</h2>
+  <p class="muted">
+    Status: Prototype
+  </p>
 
-<div class="row">
-<span class="muted">Environment</span>
-<strong>Prototype</strong>
+  <p class="muted">
+    No real token or blockchain transaction is currently deployed.
+  </p>
+
 </div>
-
-<div class="row" style="margin-top:13px">
-<span class="muted">Token Contract</span>
-<strong>Not Deployed</strong>
-</div>
-
-</article>
 
 </section>
 
-<div class="footer">
-AETHERIS NETWORK · Demo Dashboard
-</div>
+<footer>
+  AETHERIS NETWORK © 2026<br><br>
+  DEMO PLATFORM · NOT A REAL CRYPTOCURRENCY
+</footer>
 
-</main>
+</div>
 
 <script>
 
-// STORAGE
+// DASHBOARD SETTINGS
 
-const KEY = "aetheris_miner_state_v2";
-
+const KEY = "aetheris_miner_state_v3";
 const RATE_PER_HOUR = 100;
 const SESSION_SECONDS = 24 * 60 * 60;
 
+// LOAD SAVED DATA
+
 function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
 
-try {
+    return {
+      balance: Number(saved.balance) || 0,
+      sessionStart: saved.sessionStart || null,
+      sessionEarned: Number(saved.sessionEarned) || 0,
+      completedSessions: Number(saved.completedSessions) || 0,
+      lastSession: saved.lastSession || null,
+      taskDone: Array.isArray(saved.taskDone) ? saved.taskDone : [],
+      refId: saved.refId || null,
+      refCount: Number(saved.refCount) || 0,
+      refCaptured: saved.refCaptured || null
+    };
 
-return JSON.parse(localStorage.getItem(KEY)) || {
-balance:0,
-sessionStart:null,
-sessionEarned:0,
-completedSessions:0,
-lastSession:null,
-taskDone:[],
-refId:null,
-refCount:0,
-refCaptured:null
-};
-
-} catch(e) {
-
-return {
-balance:0,
-sessionStart:null,
-sessionEarned:0,
-completedSessions:0,
-lastSession:null,
-taskDone:[],
-refId:null,
-refCount:0,
-refCaptured:null
-};
-
-}
-
+  } catch(e) {
+    return {
+      balance:0,
+      sessionStart:null,
+      sessionEarned:0,
+      completedSessions:0,
+      lastSession:null,
+      taskDone:[],
+      refId:null,
+      refCount:0,
+      refCaptured:null
+    };
+  }
 }
 
 let state = loadState();
 
-function save() {
-localStorage.setItem(KEY,JSON.stringify(state));
+function saveState() {
+  localStorage.setItem(KEY,JSON.stringify(state));
 }
-
-// CREATE REFERRAL ID
 
 function makeId() {
-return "AETH-" + Math.random().toString(36).slice(2,9).toUpperCase();
+  return "AETH-" +
+  Math.random().toString(36).substring(2,8).toUpperCase();
 }
 
-if(!state.refId) {
-state.refId = makeId();
-save();
-}
-
-// FORMAT COINS
-
-function money(n) {
-return (Number(n)||0).toFixed(2);
-}
-
-// MINING TIMER
-
-function currentElapsed() {
-
-if(!state.sessionStart) return 0;
-
-return Math.min(
-SESSION_SECONDS,
-Math.max(0,Math.floor(Date.now()/1000-state.sessionStart))
-);
-
-}
-
-// UPDATE DASHBOARD
-
-function updateMining() {
-
-const elapsed = currentElapsed();
-
-const active =
-!!state.sessionStart &&
-elapsed < SESSION_SECONDS;
-
-if(state.sessionStart) {
-
-const earned =
-Math.min(SESSION_SECONDS,elapsed) *
-RATE_PER_HOUR / 3600;
-
-const previous = Number(state.sessionEarned)||0;
-
-if(earned > previous) {
-
-state.balance += earned-previous;
-state.sessionEarned = earned;
-
-save();
-
-}
-
-if(!active && !state.sessionFinished) {
-
-state.sessionFinished = true;
-
-state.completedSessions =
-(state.completedSessions||0)+1;
-
-state.lastSession =
-new Date(state.sessionStart*1000).toLocaleString();
-
-save();
-
-}
-
-}
-
-document.getElementById("balance").textContent =
-money(state.balance);
-
-document.getElementById("sessionEarned").textContent =
-money(state.sessionEarned||0)+" AETH";
-
-document.getElementById("sessionsDone").textContent =
-state.completedSessions||0;
-
-document.getElementById("lastSession").textContent =
-state.lastSession||"—";
-
-const left = Math.max(0,SESSION_SECONDS-elapsed);
-
-const h = Math.floor(left/3600);
-const m = Math.floor(left%3600/60);
-const s = left%60;
-
-document.getElementById("timer").textContent =
-`${h}h ${String(m).padStart(2,"0")}m ${String(s).padStart(2,"0")}s`;
-
-document.getElementById("progress").style.width =
-(elapsed/SESSION_SECONDS*100)+"%";
-
-document.getElementById("mineStatus").textContent =
-active ? "Mining Active" :
-(state.sessionStart ? "Session Completed" : "Ready to Start");
-
-document.getElementById("mineBtn").disabled = active;
-
-document.getElementById("mineBtn").textContent =
-active ? "⚡ MINING RUNNING..." :
-(state.sessionStart ? "⛏ START NEXT 24H SESSION" : "⛏ START 24H MINING");
-
-document.getElementById("sessionLabel").textContent =
-active ? "Current Session" : "Previous Session";
-
-}
-
-// START MINING
+// MINING
 
 function startMine() {
 
-updateMining();
+  if(state.sessionStart) {
+    alert("A mining session is already active.");
+    return;
+  }
 
-if(state.sessionStart && currentElapsed()<SESSION_SECONDS) {
-return;
+  state.sessionStart = Date.now();
+  state.sessionEarned = 0;
+
+  saveState();
+  updateMining();
 }
-
-state.sessionStart = Math.floor(Date.now()/1000);
-state.sessionEarned = 0;
-state.sessionFinished = false;
-
-save();
-
-updateMining();
-
-}
-
-// DEMO REWARD
 
 function addDemoReward(n) {
 
-state.balance = (Number(state.balance)||0)+n;
+  state.balance += n;
 
-save();
+  saveState();
+  updateMining();
 
-updateMining();
+  alert("Demo reward added: "+n+" AETH");
+}
 
-alert("Demo reward added: +"+n+" AETH");
+function updateMining() {
 
+  const now = Date.now();
+
+  let elapsed = 0;
+  let earned = 0;
+
+  if(state.sessionStart) {
+
+    elapsed = Math.min(
+      (now-state.sessionStart)/1000,
+      SESSION_SECONDS
+    );
+
+    earned = Math.floor(
+      elapsed * RATE_PER_HOUR / 3600
+    );
+
+    const newlyEarned = Math.max(
+      0,
+      earned-state.sessionEarned
+    );
+
+    if(newlyEarned > 0) {
+      state.balance += newlyEarned;
+      state.sessionEarned = earned;
+    }
+
+    if(elapsed >= SESSION_SECONDS) {
+
+      state.completedSessions++;
+
+      state.lastSession =
+      new Date().toLocaleString();
+
+      state.sessionStart = null;
+      state.sessionEarned = 0;
+
+      elapsed = SESSION_SECONDS;
+    }
+  }
+
+  document.getElementById("balance").textContent =
+  Math.floor(state.balance).toLocaleString();
+
+  document.getElementById("earned").textContent =
+  earned+" AETH";
+
+  document.getElementById("sessions").textContent =
+  state.completedSessions;
+
+  document.getElementById("lastSession").textContent =
+  state.lastSession || "Not started";
+
+  const remaining = Math.max(
+    0,
+    SESSION_SECONDS-elapsed
+  );
+
+  const hours = Math.floor(remaining/3600);
+  const minutes = Math.floor((remaining%3600)/60);
+  const seconds = Math.floor(remaining%60);
+
+  document.getElementById("timer").textContent =
+  String(hours).padStart(2,"0")+":"+
+  String(minutes).padStart(2,"0")+":"+
+  String(seconds).padStart(2,"0");
+
+  const percentage =
+  (elapsed/SESSION_SECONDS)*100;
+
+  document.getElementById("progressBar").style.width =
+  percentage+"%";
+
+  const btn = document.getElementById("mineBtn");
+
+  if(state.sessionStart) {
+    btn.textContent = "Mining Active";
+    btn.disabled = true;
+
+    document.getElementById("mineStatus").textContent =
+    "Your demo mining session is running.";
+
+  } else {
+    btn.textContent = "Start Mining";
+    btn.disabled = false;
+
+    document.getElementById("mineStatus").textContent =
+    "Start your next demo mining session.";
+  }
+
+  saveState();
 }
 
 // TASKS
 
 function completeTask(btn,url) {
 
-const id = btn.dataset.id;
+  const id = url;
 
-if(state.taskDone.includes(id)) return;
+  if(state.taskDone.includes(id)) {
+    alert("You have already visited this task.");
+    return;
+  }
 
-window.open(url,"_blank","noopener");
+  window.open(url,"_blank","noopener,noreferrer");
 
-state.taskDone.push(id);
+  state.balance += 2500;
+  state.taskDone.push(id);
 
-state.balance =
-(Number(state.balance)||0)+Number(btn.dataset.reward);
+  saveState();
+  updateMining();
+  renderTasks();
 
-save();
-
-updateMining();
-
-renderTasks();
-
+  alert("Demo task reward: 2500 AETH");
 }
 
 function renderTasks() {
 
-document.querySelectorAll(".taskBtn").forEach(btn=>{
+  const buttons = document.querySelectorAll(
+    ".task button"
+  );
 
-const done = state.taskDone.includes(btn.dataset.id);
+  buttons.forEach(btn => {
 
-btn.textContent = done ? "Completed ✓" : "Visit";
+    if(btn.onclick && btn.textContent === "Visit") {
 
-btn.disabled = done;
+      const url = btn.getAttribute("onclick");
 
-});
+      if(url && state.taskDone.some(x => url.includes(x))) {
+        btn.textContent = "Completed";
+        btn.disabled = true;
+      }
+    }
+  });
+}
 
+// ADSTERRA AD
+
+let adLoaded = false;
+
+function showAd() {
+
+  const box = document.getElementById("adBox");
+
+  box.style.display = "block";
+
+  if(adLoaded) return;
+
+  const frame = document.getElementById("adFrame");
+
+  const adHTML = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin:0;
+        padding:0;
+        background:#ffffff;
+        overflow:hidden;
+      }
+    </style>
+  </head>
+  <body>
+
+    <script>
+      var atOptions = {
+        'key': '231907270ae2b49d4d2722658005a2f7',
+        'format': 'iframe',
+        'height': 300,
+        'width': 160,
+        'params': {}
+      };
+    <\/script>
+
+    <script src="https://bauval.org/22/231907270ae2b49d4d2722658005a2f7"><\/script>
+
+  </body>
+  </html>
+  `;
+
+  frame.srcdoc = adHTML;
+
+  adLoaded = true;
+}
+
+// REFERRAL
+
+function referralUrl() {
+
+  const url = new URL(window.location.href);
+
+  url.searchParams.set("ref",state.refId);
+
+  return url.toString();
+}
+
+function initReferral() {
+
+  if(!state.refId) {
+    state.refId = makeId();
+  }
+
+  const params = new URLSearchParams(
+    window.location.search
+  );
+
+  const incoming = params.get("ref");
+
+  if(incoming && incoming !== state.refId) {
+    state.refCaptured = incoming;
+  }
+
+  document.getElementById("refId").textContent =
+  state.refId;
+
+  document.getElementById("refLink").value =
+  referralUrl();
+
+  document.getElementById("refCount").textContent =
+  state.refCount;
+
+  saveState();
+}
+
+function copyReferral() {
+
+  const link = document.getElementById("refLink");
+
+  link.select();
+
+  navigator.clipboard.writeText(link.value)
+  .then(() => alert("Referral link copied!"))
+  .catch(() => {
+    document.execCommand("copy");
+    alert("Referral link copied!");
+  });
+}
+
+function shareTelegram() {
+
+  const link = referralUrl();
+
+  const message =
+  "Join Aetheris Network Demo Platform: "+link;
+
+  const telegram =
+  "https://t.me/share/url?url="+
+  encodeURIComponent(link)+
+  "&text="+encodeURIComponent(message);
+
+  window.open(telegram,"_blank");
+}
+
+function shareOther() {
+
+  const link = referralUrl();
+
+  if(navigator.share) {
+
+    navigator.share({
+      title:"Aetheris Network",
+      text:"Explore Aetheris Network Demo Platform",
+      url:link
+    });
+
+  } else {
+
+    navigator.clipboard.writeText(link)
+    .then(() => alert("Link copied!"));
+  }
 }
 
 // NAVIGATION
 
 function showTab(id,el) {
 
-document.querySelectorAll(".tab-box").forEach(x=>{
-x.classList.remove("active");
-});
+  document.querySelectorAll(".section")
+  .forEach(section => {
+    section.classList.remove("active");
+  });
 
-document.getElementById(id).classList.add("active");
+  document.querySelectorAll(".nav button")
+  .forEach(button => {
+    button.classList.remove("active");
+  });
 
-document.querySelectorAll(".nav button").forEach(x=>{
-x.classList.remove("act");
-});
+  document.getElementById(id)
+  .classList.add("active");
 
-el.classList.add("act");
-
+  el.classList.add("active");
 }
 
-// REFERRAL LINK
-
-function referralUrl() {
-
-const u = new URL(location.href);
-
-u.search = "";
-u.hash = "";
-
-u.searchParams.set("ref",state.refId);
-
-return u.toString();
-
-}
-
-// COPY REFERRAL LINK
-
-async function copyReferral() {
-
-const input = document.getElementById("refLink");
-
-try {
-
-await navigator.clipboard.writeText(input.value);
-
-} catch(e) {
-
-input.select();
-document.execCommand("copy");
-
-}
-
-const btn = document.getElementById("copyBtn");
-
-btn.textContent = "Copied!";
-
-setTimeout(()=>{
-btn.textContent = "Copy";
-},1500);
-
-}
-
-// TELEGRAM SHARE BUTTON
-
-function shareTelegram() {
-
-const link = document.getElementById("refLink").value;
-
-const message =
-"🚀 Join AETHERIS NETWORK!\n\n" +
-"⛏ Explore Aetheris Network\n" +
-"💎 Check out the AETH demo dashboard!\n\n" +
-"🎁 Join using my referral link:\n" +
-link;
-
-const telegramURL =
-"https://t.me/share/url?url=" +
-encodeURIComponent(link) +
-"&text=" +
-encodeURIComponent(message);
-
-window.open(telegramURL,"_blank");
-
-}
-
-// OTHER SHARE BUTTON
-
-async function shareOther() {
-
-const link = document.getElementById("refLink").value;
-
-if(navigator.share) {
-
-try {
-
-await navigator.share({
-title:"AETHERIS NETWORK",
-text:"Join AETHERIS NETWORK using my referral link!",
-url:link
-});
-
-} catch(e) {}
-
-} else {
-
-copyReferral();
-
-alert("Referral link copied. You can share it with your friends.");
-
-}
-
-}
-
-// INITIALIZE REFERRAL
-
-function initReferral() {
-
-const incoming =
-new URLSearchParams(location.search).get("ref");
-
-if(
-incoming &&
-incoming !== state.refId &&
-!state.refCaptured &&
-/^[A-Z0-9-]{4,30}$/i.test(incoming)
-) {
-
-state.refCaptured = incoming;
-
-save();
-
-}
-
-document.getElementById("refId").textContent =
-state.refId;
-
-document.getElementById("refLink").value =
-referralUrl();
-
-document.getElementById("refCount").textContent =
-state.refCount||0;
-
-}
-
-// START DASHBOARD
-
-renderTasks();
+// START
 
 initReferral();
-
+renderTasks();
 updateMining();
 
 setInterval(updateMining,1000);
