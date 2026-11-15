@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>AETHERIS NETWORK | Mining Dashboard</title>
 
 <style>
@@ -234,14 +233,8 @@ input {
   border:1px solid var(--cyan);
   padding:18px;
   border-radius:14px;
-  margin-top:15px;
+  margin:20px 0;
   text-align:center;
-}
-
-.ad-box iframe {
-  max-width:100%;
-  background:white;
-  border:0;
 }
 
 .ad-label {
@@ -249,6 +242,12 @@ input {
   font-size:12px;
   letter-spacing:2px;
   margin-bottom:12px;
+}
+
+.ad-box iframe {
+  max-width:100%;
+  background:white;
+  border:0;
 }
 
 footer {
@@ -278,6 +277,10 @@ footer {
   .balance {
     font-size:29px;
   }
+
+  .brand h2 {
+    font-size:17px;
+  }
 }
 </style>
 </head>
@@ -297,9 +300,8 @@ footer {
 <div class="hero">
   <h1>Welcome to Aetheris 🚀</h1>
   <p>
-    Explore the Aetheris Network demo dashboard.
-    Manage your mining sessions, tasks, referrals
-    and wallet information in one place.
+    Your mining activity, rewards and community
+    referrals in one place.
   </p>
 </div>
 
@@ -310,11 +312,42 @@ footer {
   <button onclick="showTab('wallet',this)">Wallet</button>
 </nav>
 
-<!-- MINING SECTION -->
+<!-- SHARED SPONSORED AD PLACEMENT -->
+
+<div class="card ad-box" id="adBox">
+
+  <h2>Sponsored Advertisement</h2>
+
+  <p class="muted">
+    View sponsored content from our advertising partner.
+  </p>
+
+  <div class="ad-label">
+    SPONSORED ADVERTISEMENT
+  </div>
+
+  <iframe
+    id="adFrame"
+    title="Sponsored Advertisement"
+    width="160"
+    height="300"
+    scrolling="no"
+    style="border:0">
+  </iframe>
+
+  <p class="muted">
+    Advertisement is independent of AETH demo rewards.
+    Clicking advertisements is not required.
+  </p>
+
+</div>
+
+<!-- MINING -->
 
 <section id="mine" class="section active">
 
 <div class="card">
+
   <h3>Total AETH Balance</h3>
 
   <div class="balance">
@@ -322,7 +355,7 @@ footer {
   </div>
 
   <p class="muted">
-    Demo balance stored in your browser.
+    Your balance is saved in this browser.
   </p>
 
   <button class="action" id="mineBtn" onclick="startMine()">
@@ -340,6 +373,7 @@ footer {
   <p class="muted" id="mineStatus">
     Start your demo mining session.
   </p>
+
 </div>
 
 <div class="stats">
@@ -362,7 +396,8 @@ footer {
 </div>
 
 <div class="card">
-  <h3>Mining Overview</h3>
+
+  <h2>Mining Overview</h2>
 
   <p class="muted">
     Current Earned:
@@ -379,27 +414,20 @@ footer {
     <strong id="lastSession">Not started</strong>
   </p>
 
-  <button class="action secondary"
-  onclick="addDemoReward(500)">
-    Add Demo Reward (+500)
-  </button>
-
-  <p class="muted">
-    Test feature only. This does not represent real cryptocurrency.
-  </p>
 </div>
 
 </section>
 
-<!-- TASKS SECTION -->
+<!-- TASKS -->
 
 <section id="tasks" class="section">
 
 <div class="card">
+
   <h2>Community Tasks</h2>
 
   <p class="muted">
-    Explore community links and sponsored content.
+    Explore our community and social updates.
   </p>
 
   <div class="task">
@@ -408,8 +436,7 @@ footer {
       <p>Visit our community page.</p>
     </div>
 
-    <button class="action"
-    onclick="completeTask(this,'https://youtube.com')">
+    <button class="action" onclick="completeTask(this,'https://youtube.com')">
       Visit
     </button>
   </div>
@@ -420,8 +447,7 @@ footer {
       <p>Explore social updates.</p>
     </div>
 
-    <button class="action"
-    onclick="completeTask(this,'https://instagram.com')">
+    <button class="action" onclick="completeTask(this,'https://instagram.com')">
       Visit
     </button>
   </div>
@@ -432,62 +458,31 @@ footer {
       <p>Discover the latest updates.</p>
     </div>
 
-    <button class="action"
-    onclick="completeTask(this,'https://telegram.org')">
+    <button class="action" onclick="completeTask(this,'https://telegram.org')">
       Visit
     </button>
   </div>
 
 </div>
 
-<!-- ADVERTISEMENT -->
-
 <div class="card">
+
   <h2>Sponsored Advertisement</h2>
 
   <p class="muted">
-    Support our platform by viewing sponsored content.
+    Advertisement is provided by our advertising partner.
+    No AETH reward is offered for viewing or clicking ads.
   </p>
 
-  <div class="task">
-    <div>
-      <strong>📢 View Sponsored Ad</strong>
-      <p>Open the advertisement below.</p>
-    </div>
+  <button class="action" onclick="showAdManually()">
+    View Sponsored Ad
+  </button>
 
-    <button class="action" onclick="showAd()">
-      View Ad
-    </button>
-  </div>
-
-  <div class="ad-box" id="adBox">
-
-    <div class="ad-label">
-      SPONSORED ADVERTISEMENT
-    </div>
-
-    <p class="muted">
-      Advertisement provided by our advertising partner.
-    </p>
-
-    <iframe
-      id="adFrame"
-      title="Sponsored Advertisement"
-      width="160"
-      height="300"
-      scrolling="no">
-    </iframe>
-
-    <p class="muted">
-      Advertisement is independent of AETH demo rewards.
-    </p>
-
-  </div>
 </div>
 
 </section>
 
-<!-- REFERRAL SECTION -->
+<!-- REFER -->
 
 <section id="refer" class="section">
 
@@ -507,13 +502,11 @@ footer {
     Copy Link
   </button>
 
-  <button class="action secondary"
-  onclick="shareTelegram()">
+  <button class="action secondary" onclick="shareTelegram()">
     Share on Telegram
   </button>
 
-  <button class="action secondary"
-  onclick="shareOther()">
+  <button class="action secondary" onclick="shareOther()">
     Share Other
   </button>
 
@@ -543,15 +536,15 @@ footer {
   </div>
 
   <p class="muted">
-    Referral tracking and rewards require a secure backend
-    and database. Current statistics are stored locally.
+    Actual referral tracking requires a secure backend
+    and database.
   </p>
 
 </div>
 
 </section>
 
-<!-- WALLET SECTION -->
+<!-- WALLET -->
 
 <section id="wallet" class="section">
 
@@ -600,7 +593,8 @@ footer {
 </section>
 
 <footer>
-  AETHERIS NETWORK © 2026<br><br>
+  AETHERIS NETWORK © 2026
+  <br><br>
   DEMO PLATFORM · NOT A REAL CRYPTOCURRENCY
 </footer>
 
@@ -608,31 +602,36 @@ footer {
 
 <script>
 
-// DASHBOARD SETTINGS
+// SETTINGS
 
 const KEY = "aetheris_miner_state_v3";
 const RATE_PER_HOUR = 100;
-const SESSION_SECONDS = 24 * 60 * 60;
+const SESSION_SECONDS = 86400;
 
-// LOAD SAVED DATA
+// LOAD SAVED STATE
 
 function loadState() {
+
   try {
-    const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+
+    const saved = JSON.parse(
+      localStorage.getItem(KEY) || "{}"
+    );
 
     return {
-      balance: Number(saved.balance) || 0,
-      sessionStart: saved.sessionStart || null,
-      sessionEarned: Number(saved.sessionEarned) || 0,
-      completedSessions: Number(saved.completedSessions) || 0,
-      lastSession: saved.lastSession || null,
-      taskDone: Array.isArray(saved.taskDone) ? saved.taskDone : [],
-      refId: saved.refId || null,
-      refCount: Number(saved.refCount) || 0,
-      refCaptured: saved.refCaptured || null
+      balance:Number(saved.balance)||0,
+      sessionStart:saved.sessionStart||null,
+      sessionEarned:Number(saved.sessionEarned)||0,
+      completedSessions:Number(saved.completedSessions)||0,
+      lastSession:saved.lastSession||null,
+      taskDone:Array.isArray(saved.taskDone)?saved.taskDone:[],
+      refId:saved.refId||null,
+      refCount:Number(saved.refCount)||0,
+      refCaptured:saved.refCaptured||null
     };
 
   } catch(e) {
+
     return {
       balance:0,
       sessionStart:null,
@@ -644,6 +643,7 @@ function loadState() {
       refCount:0,
       refCaptured:null
     };
+
   }
 }
 
@@ -663,7 +663,7 @@ function makeId() {
 function startMine() {
 
   if(state.sessionStart) {
-    alert("A mining session is already active.");
+    alert("Mining session is already active.");
     return;
   }
 
@@ -674,19 +674,7 @@ function startMine() {
   updateMining();
 }
 
-function addDemoReward(n) {
-
-  state.balance += n;
-
-  saveState();
-  updateMining();
-
-  alert("Demo reward added: "+n+" AETH");
-}
-
 function updateMining() {
-
-  const now = Date.now();
 
   let elapsed = 0;
   let earned = 0;
@@ -694,25 +682,25 @@ function updateMining() {
   if(state.sessionStart) {
 
     elapsed = Math.min(
-      (now-state.sessionStart)/1000,
+      (Date.now()-state.sessionStart)/1000,
       SESSION_SECONDS
     );
 
     earned = Math.floor(
-      elapsed * RATE_PER_HOUR / 3600
+      elapsed*RATE_PER_HOUR/3600
     );
 
-    const newlyEarned = Math.max(
+    const newEarned = Math.max(
       0,
       earned-state.sessionEarned
     );
 
-    if(newlyEarned > 0) {
-      state.balance += newlyEarned;
+    if(newEarned>0) {
+      state.balance += newEarned;
       state.sessionEarned = earned;
     }
 
-    if(elapsed >= SESSION_SECONDS) {
+    if(elapsed>=SESSION_SECONDS) {
 
       state.completedSessions++;
 
@@ -736,7 +724,7 @@ function updateMining() {
   state.completedSessions;
 
   document.getElementById("lastSession").textContent =
-  state.lastSession || "Not started";
+  state.lastSession||"Not started";
 
   const remaining = Math.max(
     0,
@@ -752,15 +740,13 @@ function updateMining() {
   String(minutes).padStart(2,"0")+":"+
   String(seconds).padStart(2,"0");
 
-  const percentage =
-  (elapsed/SESSION_SECONDS)*100;
-
   document.getElementById("progressBar").style.width =
-  percentage+"%";
+  (elapsed/SESSION_SECONDS*100)+"%";
 
   const btn = document.getElementById("mineBtn");
 
   if(state.sessionStart) {
+
     btn.textContent = "Mining Active";
     btn.disabled = true;
 
@@ -768,11 +754,13 @@ function updateMining() {
     "Your demo mining session is running.";
 
   } else {
+
     btn.textContent = "Start Mining";
     btn.disabled = false;
 
     document.getElementById("mineStatus").textContent =
     "Start your next demo mining session.";
+
   }
 
   saveState();
@@ -782,17 +770,17 @@ function updateMining() {
 
 function completeTask(btn,url) {
 
-  const id = url;
-
-  if(state.taskDone.includes(id)) {
+  if(state.taskDone.includes(url)) {
     alert("You have already visited this task.");
     return;
   }
 
   window.open(url,"_blank","noopener,noreferrer");
 
+  state.taskDone.push(url);
+
+  // Demo task reward, separate from advertisements.
   state.balance += 2500;
-  state.taskDone.push(id);
 
   saveState();
   updateMining();
@@ -803,33 +791,28 @@ function completeTask(btn,url) {
 
 function renderTasks() {
 
-  const buttons = document.querySelectorAll(
-    ".task button"
-  );
+  document.querySelectorAll(".task button")
+  .forEach(btn => {
 
-  buttons.forEach(btn => {
+    const code = btn.getAttribute("onclick")||"";
 
-    if(btn.onclick && btn.textContent === "Visit") {
+    const match = code.match(
+      /completeTask\(this,'([^']+)'\)/
+    );
 
-      const url = btn.getAttribute("onclick");
-
-      if(url && state.taskDone.some(x => url.includes(x))) {
-        btn.textContent = "Completed";
-        btn.disabled = true;
-      }
+    if(match && state.taskDone.includes(match[1])) {
+      btn.textContent = "Completed";
+      btn.disabled = true;
     }
+
   });
 }
 
-// ADSTERRA AD
+// ADVERTISEMENT
 
 let adLoaded = false;
 
-function showAd() {
-
-  const box = document.getElementById("adBox");
-
-  box.style.display = "block";
+function loadAdOnce() {
 
   if(adLoaded) return;
 
@@ -868,8 +851,21 @@ function showAd() {
   `;
 
   frame.srcdoc = adHTML;
-
   adLoaded = true;
+}
+
+function showAdManually() {
+
+  const box = document.getElementById("adBox");
+
+  box.style.display = "block";
+
+  loadAdOnce();
+
+  box.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
 }
 
 // REFERRAL
@@ -895,7 +891,7 @@ function initReferral() {
 
   const incoming = params.get("ref");
 
-  if(incoming && incoming !== state.refId) {
+  if(incoming && incoming!==state.refId) {
     state.refCaptured = incoming;
   }
 
@@ -913,11 +909,12 @@ function initReferral() {
 
 function copyReferral() {
 
-  const link = document.getElementById("refLink");
+  const input = document.getElementById("refLink");
 
-  link.select();
+  input.select();
+  input.setSelectionRange(0,99999);
 
-  navigator.clipboard.writeText(link.value)
+  navigator.clipboard.writeText(input.value)
   .then(() => alert("Referral link copied!"))
   .catch(() => {
     document.execCommand("copy");
@@ -954,8 +951,8 @@ function shareOther() {
 
   } else {
 
-    navigator.clipboard.writeText(link)
-    .then(() => alert("Link copied!"));
+    copyReferral();
+
   }
 }
 
@@ -973,10 +970,18 @@ function showTab(id,el) {
     button.classList.remove("active");
   });
 
-  document.getElementById(id)
-  .classList.add("active");
+  document.getElementById(id).classList.add("active");
 
   el.classList.add("active");
+
+  // Reveal the same shared ad placement after tab navigation.
+  // Do not reload the advertisement on every tab click.
+
+  const box = document.getElementById("adBox");
+
+  box.style.display = "block";
+
+  loadAdOnce();
 }
 
 // START
