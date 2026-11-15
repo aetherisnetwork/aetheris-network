@@ -18,9 +18,7 @@
 --green:#54dfaa;
 }
 
-* {
-box-sizing:border-box;
-}
+* {box-sizing:border-box;}
 
 body {
 margin:0;
@@ -53,14 +51,13 @@ letter-spacing:1.5px;
 }
 
 .logo {
-width:43px;
-height:43px;
-border-radius:14px;
-background:linear-gradient(135deg,var(--cyan),var(--blue));
-display:grid;
-place-items:center;
-color:#061321;
-font-size:23px;
+width:58px;height:58px;flex:0 0 58px;border-radius:50%;overflow:hidden;
+background:#0b1a2b;border:2px solid #35d8f5;
+box-shadow:0 0 12px #16bfe8,inset 0 0 8px #16bfe8;
+}
+
+.logo img {
+width:100%;height:100%;object-fit:cover;display:block;
 }
 
 .pill {
@@ -145,9 +142,7 @@ opacity:.5;
 cursor:not-allowed;
 }
 
-.wide {
-width:100%;
-}
+.wide {width:100%;}
 
 .progress {
 height:8px;
@@ -210,13 +205,8 @@ background:linear-gradient(100deg,var(--cyan),#8aabff);
 color:#061321;
 }
 
-.tab-box {
-display:none;
-}
-
-.tab-box.active {
-display:block;
-}
+.tab-box {display:none;}
+.tab-box.active {display:block;}
 
 .section-title {
 font-size:18px;
@@ -291,9 +281,7 @@ line-height:1.5;
 margin-top:14px;
 }
 
-.wallet {
-margin-top:18px;
-}
+.wallet {margin-top:18px;}
 
 .footer {
 text-align:center;
@@ -334,35 +322,15 @@ grid-template-columns:1fr 1fr;
 gap:18px;
 }
 
-.mine-lower-grid .stats {
-margin-top:0;
-}
+.mine-lower-grid .stats {margin-top:0;}
 
 @media(max-width:760px) {
-.grid {
-grid-template-columns:1fr;
-}
-
-.wrap {
-padding:18px 13px;
-}
-
-.card {
-padding:18px;
-}
-
-.nav button {
-font-size:12px;
-padding:10px 3px;
-}
-
-.share-buttons {
-grid-template-columns:1fr;
-}
-
-.mine-lower-grid {
-grid-template-columns:1fr;
-}
+.grid {grid-template-columns:1fr;}
+.wrap {padding:18px 13px;}
+.card {padding:18px;}
+.nav button {font-size:12px;padding:10px 3px;}
+.share-buttons {grid-template-columns:1fr;}
+.mine-lower-grid {grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -373,9 +341,14 @@ grid-template-columns:1fr;
 
 <header class="top">
 <div class="brand">
-<div class="logo">A</div>
+
+<div class="logo">
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCABIAEgDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAAQCAwUGAf/EADEQAAIBAwIEAwcEAwEAAAAAAAECAwAEEQUSITFBURNhcRQiI0JSkcEVMqHRgbLh8P/EABcBAQEBAQAAAAAAAAAAAAAAAAABAgP/xAAdEQACAgMAAwAAAAAAAAAAAAAAAQIREiExAyJB/9oADAMBAAIRAxEAPwDCr0VGpCtmSaipquaitaGmWjXl2kQ5Hix7DrV4jJTJZyx28czKRHJnae+KWK1297Fb3cEllGyholGFHyHpXHtEyuVYEMDgg9DWIyyK1QvtrwrW5p+ivdwmV28OPkDjOatm0izhIVppZXPJYwKJ29B66c2wop/VIIIGjEAYZBJ3Nnrj8GitCzOFTUV4orZ03RZLqMSyusMPPc/Ud8VG0ulqzMUYro7B00jTJLqQZlcA7f8AVfzVR0rTw4EeqQ7weCsBg/zSur2+oAKzhJo0ywaLjx7kc6jalSCTVsVsNQkt9SNy7F2Y/HHcH+q2jZR6nqZeNvhqB4zDkT0A8yK5/TLCW9ulSI46u55AV0Gq3cNhaewWh2ADDsOfp6mklcvXpFKlsakvkmuFt4MC2j4MRyPT7VO7eCKEiPGApJI6iuTa5lR/ClBQL8n/ALnTUV/H4DRTsUVhwZjxHHOAO1dElBWcpRlN0LajJvuWH0gL/H90UrJJvZm+ok0VDZO1C+KC4BVeJB6+VW3eoTXMu0EsN21E6E98dTShcqpxwJGKfsrRriIXNqUaSPOVY4xn80xvYc8ekL23a3t1Z5Q0jHaEAGD3qrTp7vxRHbPgczk+4o7+X+KLqOaSXM7BAo2hQckCoC8ECFLcAHvzA8z3NFF1TDkruJty38em25gt2zM3vPIeefqPn2HSsX2iRrlWIPuHcFb5vM0q0jE5JJycknmT3rRs5be6CxXRCMP2SZxj0P4NG1FaCVu2amsaetxYR31v0Xj5r/w1zhTBrq7SC7s7WRGZJrYDcp6+YI7Vzl7EIZyq8UPFD5Vy8cvh1kn0oJoqJoroYBuK4qCyvE+YmdPMHBrR1XS303wz4qzI+RuUYww5irX0i1hhge51OKFpoxIFaNjwPpRTXRiZDyyS/vd29TQq55/atex0e2vnKRalF4nvHb4bcgef2415HpcMzTi2vo5lhhMrMEI5dONM0MTNwMVDipOOXanbeyM+nXV2JAot9uUxxbPnTc2kWtuIvadUiieRA4UxseB9KmSLRmQ3s8AxFLNGOyPw+1DXPixhGBJByGNPW+kwS2bXUt/HDEJTGCYyc9jw71NNCdr+3t1uI2juELxzKCQQB2rNouzLorQg0yM2ntN3eR20TOUQlCxYj05UVckKPWv7eeymtirRbmMimR93v1edUbwYFhu4Y9kYUh03HNFFZcUVMU025S0v2kaRSu1hu6HNe6Veiya4cOFZo8LnvRRWmrImWtq8txptzDdSKXcAKAoGftTEuqsyRCG8hjVUCkPHuOaKKy4oqkxSG+ig0427rHcfFLbGyAR3q79TT9Rt5VkVYY4yqIBjZkcqKKuKFi9peyQRFY7xFUsSYpUyvPpRRRUcUVMU//9k=" alt="Aetheris Network logo">
+</div>
+
 <span>AETHERIS <span style="color:var(--cyan)">NETWORK</span></span>
 </div>
+
 <span class="pill">● MINING DASHBOARD</span>
 </header>
 
@@ -488,19 +461,6 @@ This is a demo balance, not real cryptocurrency.
 <div class="notice">
 When 24 hours finish, your earned coins stay in your total balance.
 </div>
-
-</article>
-
-<article class="card">
-
-<h2 class="section-title">⚡ Quick Actions</h2>
-
-<button class="btn secondary wide"
-onclick="addDemoReward(500)">
-Add Demo Reward (+500)
-</button>
-
-<p class="note">This is only a testing button.</p>
 
 </article>
 
@@ -882,20 +842,6 @@ state.sessionFinished = false;
 save();
 
 updateMining();
-
-}
-
-// DEMO REWARD
-
-function addDemoReward(n) {
-
-state.balance = (Number(state.balance)||0)+n;
-
-save();
-
-updateMining();
-
-alert("Demo reward added: +"+n+" AETH");
 
 }
 
