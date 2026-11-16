@@ -405,7 +405,7 @@ This is a demo balance, not real cryptocurrency.
 
 </article>
 
-<!-- MINE AD -->
+<!-- MINE BANNER AD -->
 
 <article class="card ad-card">
 <span class="ad-label">ADVERTISEMENT</span>
@@ -814,9 +814,6 @@ document.getElementById("mineBtn").textContent =
 active ? "⚡ MINING RUNNING..." :
 (state.sessionStart ? "⛏ START NEXT 24H SESSION" : "⛏ START 24H MINING");
 
-document.getElementById("sessionLabel").textContent =
-active ? "Current Session" : "Previous Session";
-
 }
 
 // START MINING
@@ -876,7 +873,8 @@ btn.disabled = done;
 
 }
 
-// AD UNITS
+// BANNER AD UNITS ONLY
+// Social Bar code is not included.
 
 const adUnits = {
 
@@ -920,6 +918,10 @@ if(!unit || !slot) return;
 loadedAds.add(tabId);
 
 slot.style.minHeight = unit.height + "px";
+slot.style.width = "100%";
+slot.style.maxWidth = unit.width + "px";
+
+// Load the supplied banner ad code
 
 const options = document.createElement("script");
 
