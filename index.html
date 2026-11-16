@@ -481,13 +481,13 @@ Complete demo tasks to test the dashboard.
 
 <div class="task">
 <div>
-▶ YouTube
-<small>Demo reward · 2,500 AETH</small>
+▶ Subscribe YouTube
+<small>Demo reward · 2,000 AETH</small>
 </div>
 
 <button class="btn secondary taskBtn"
-data-id="youtube"
-data-reward="2500"
+data-id="youtube_subscribe_v2"
+data-reward="2000"
 onclick="completeTask(this,'https://youtube.com')">
 Visit
 </button>
@@ -495,13 +495,13 @@ Visit
 
 <div class="task">
 <div>
-◎ Instagram
-<small>Demo reward · 1,500 AETH</small>
+◎ Follow Instagram
+<small>Demo reward · 1,000 AETH</small>
 </div>
 
 <button class="btn secondary taskBtn"
-data-id="instagram"
-data-reward="1500"
+data-id="instagram_follow_v2"
+data-reward="1000"
 onclick="completeTask(this,'https://instagram.com')">
 Visit
 </button>
@@ -509,14 +509,14 @@ Visit
 
 <div class="task">
 <div>
-𝕏 Social Updates
-<small>Demo reward · 1,500 AETH</small>
+▶ Like YouTube Shorts
+<small>Demo reward · 1,000 AETH</small>
 </div>
 
 <button class="btn secondary taskBtn"
-data-id="x"
-data-reward="1500"
-onclick="completeTask(this,'https://x.com')">
+data-id="youtube_shorts_like_v1"
+data-reward="1000"
+onclick="completeTask(this,'https://www.youtube.com/shorts')">
 Visit
 </button>
 </div>
@@ -524,7 +524,7 @@ Visit
 </div>
 
 <p class="note">
-These are demo rewards. A real website needs server-side verification.
+These are demo rewards. Clicking Visit adds the demo reward; actual social actions are not verified. A real website needs server-side verification.
 </p>
 
 </article>
@@ -593,7 +593,7 @@ onclick="shareOther()">
 </div>
 
 <div class="notice">
-Your referral ID is included in the shared link. Actual referral counting and rewards require a shared database and server verification.
+Your referral ID is included in the shared bot link. Actual referral counting and rewards require a shared database and server verification.
 </div>
 
 </article>
@@ -657,6 +657,8 @@ AETHERIS NETWORK · Demo Dashboard
 </div>
 
 </main>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <script>
 
@@ -921,8 +923,6 @@ slot.style.minHeight = unit.height + "px";
 slot.style.width = "100%";
 slot.style.maxWidth = unit.width + "px";
 
-// Load the supplied banner ad code
-
 const options = document.createElement("script");
 
 options.text =
@@ -962,18 +962,14 @@ loadTabAd(id);
 
 }
 
-// REFERRAL LINK
+// REFERRAL LINK - TELEGRAM BOT MINI APP
+
+const BOT_USERNAME = "AetherisOfficial_bot";
 
 function referralUrl() {
 
-const u = new URL(location.href);
-
-u.search = "";
-u.hash = "";
-
-u.searchParams.set("ref",state.refId);
-
-return u.toString();
+return "https://t.me/" + BOT_USERNAME +
+"?startapp=ref_" + encodeURIComponent(state.refId);
 
 }
 
@@ -1014,7 +1010,7 @@ const message =
 "🚀 Join AETHERIS NETWORK!\n\n" +
 "⛏ Explore Aetheris Network\n" +
 "💎 Check out the AETH demo dashboard!\n\n" +
-"🎁 Join using my referral link:\n" +
+"🎁 Join using my referral bot link:\n" +
 link;
 
 const telegramURL =
@@ -1039,7 +1035,7 @@ try {
 
 await navigator.share({
 title:"AETHERIS NETWORK",
-text:"Join AETHERIS NETWORK using my referral link!",
+text:"Join AETHERIS NETWORK using my referral bot link!",
 url:link
 });
 
@@ -1059,8 +1055,24 @@ alert("Referral link copied. You can share it with your friends.");
 
 function initReferral() {
 
-const incoming =
-new URLSearchParams(location.search).get("ref");
+const params = new URLSearchParams(location.search);
+
+let incoming = params.get("ref");
+
+// Telegram Mini App startapp parameter
+
+if(!incoming && window.Telegram &&
+window.Telegram.WebApp &&
+window.Telegram.WebApp.initDataUnsafe) {
+
+const startParam =
+window.Telegram.WebApp.initDataUnsafe.start_param || "";
+
+if(startParam.startsWith("ref_")) {
+incoming = startParam.substring(4);
+}
+
+}
 
 if(
 incoming &&
@@ -1095,6 +1107,10 @@ renderTasks();
 initReferral();
 
 updateMining();
+
+if(window.Telegram && window.Telegram.WebApp) {
+window.Telegram.WebApp.ready();
+}
 
 setInterval(updateMining,1000);
 
